@@ -11,10 +11,11 @@ void Toggle_Col(int* Curr_Pump){
     *Curr_Pump += 1;
     if(*Curr_Pump == 11){
         *Curr_Pump = 8;
+        // switch between pump 8 - 10
     }
 }
 
-
+// Should be called(in interrupt) when Motor Pump Trigger button input is on
 void togglpump(GPIO_TypeDef *port, int Curr_Pump) {
     int temp = port->ODR & (1 << Curr_Pump);
 

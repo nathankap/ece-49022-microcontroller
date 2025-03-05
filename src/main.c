@@ -1,4 +1,5 @@
 #include "stm32f0xx.h"
+#include "motors.h"
 void internal_clock();
 void gpio_init();
 void exti_init();

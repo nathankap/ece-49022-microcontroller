@@ -1,0 +1,67 @@
+#include "stm32f0xx.h"
+#include "display.h"
+
+void nano_wait(unsigned int n) {
+    asm(    "        mov r0,%0\n"
+            "repeat: sub r0,#83\n"
+            "        bgt repeat\n" : : "r"(n) : "r0", "cc");
+}
+// Initialize SPI1 for communication with the display
+void init_spi1() {
+    RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
+
+    SPI1->CR1 &= ~SPI_CR1_SPE; // clear cr1_spe
+    GPIOA->MODER &= ~(GPIO_MODER_MODER15_Msk | GPIO_MODER_MODER5_Msk | GPIO_MODER_MODER7_Msk); // clear pins
+    GPIOA->MODER |= (GPIO_MODER_MODER15_1 | GPIO_MODER_MODER5_1 | GPIO_MODER_MODER7_1); // alt function on pins
+    GPIOA->AFR[0] &= ~(0xf << 20); // pin 5 to AF0 (0000)
+    GPIOA->AFR[0] &= ~(0xf << 28); // pin 7 to AF0 (0000)
+    GPIOA->AFR[1] &= ~(0xf << 28); // pin 15 to AF0 (0000)
+
+    SPI1->CR1 |= SPI_CR1_BR | SPI_CR1_MSTR; // baud rate (256) & master config
+    SPI1->CR2 |= 0x900; // 10-bit word size ???
+    SPI1->CR2 &= ~0x600;
+    SPI1->CR2 |= (SPI_CR2_SSOE | SPI_CR2_NSSP ); // ssoe, nssp,  not txdmaen | SPI_CR2_TXDMAEN
+    SPI1->CR1 |= SPI_CR1_SPE; // enable spi
+    
+}
+
+// Send a command to the display
+void spi_cmd(uint8_t cmd) {
+    while (!(SPI1->SR & SPI_SR_TXE)); // Wait for TX buffer to be empty
+    SPI1->DR = cmd;
+    // while (SPI1->SR & SPI_SR_BSY); // Wait for transmission to complete
+}
+
+// Send data (character) to the display
+void spi_data(uint8_t data) {
+    spi_cmd(data | 0x200); // Send data with RS bit high
+}
+
+// Initialize the OLED display
+void spi1_init_display() {
+    nano_wait(1000000);  // Small delay
+    spi_cmd(0x38); // Function set (8-bit, 2-line)
+    spi_cmd(0x08); // Display OFF
+    spi_cmd(0x01); // Clear display
+    nano_wait(2000000);
+    spi_cmd(0x06); // Entry mode (auto increment)
+    spi_cmd(0x02); // Move cursor to home
+    spi_cmd(0x0C); // Display ON, cursor OFF
+}
+
+// Display text on the first line
+void spi1_display1(const char *string) {
+    spi_cmd(0x02); // Move cursor to start of line 1
+    while (*string) {
+        spi_data(*string++);
+    }
+}
+
+// Display text on the second line
+void spi1_display2(const char *string) {
+    spi_cmd(0xC0); // Move cursor to start of line 2
+    while (*string) {
+        spi_data(*string++);
+    }
+}

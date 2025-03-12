@@ -1,14 +1,17 @@
 #ifndef MOTORS_H
 #define MOTORS_H
 
-#include "stm32f0xx.h"
+#include <stdint.h>
 
+// Define motor directions
+typedef enum {
+    MOTOR_STOP,
+    MOTOR_CW,
+    MOTOR_CCW
+} motor_direction_t;
 
-// Initialize the motor GPIO pins and PWM
 void init_motors(void);
+void set_motor1_direction(motor_direction_t direction);
+void set_motor2_direction(motor_direction_t direction);
 
-// Control individual motors (angle from 0 to 180 degrees) 0 is counterclockwise and 180 is clockwise
-void set_motor1_angle(uint8_t angle);
-void set_motor2_angle(uint8_t angle);
-
-#endif // MOTORS_H
+#endif /* MOTORS_H */

@@ -12,11 +12,11 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "c:/Users/ericz/Documents/GitHub/ece-49022-microcontroller/.pio/build/nucleo_f091rc/firmware.elf",
+            "executable": "C:/Users/thena/OneDrive/Documents/PlatformIO/Projects/ece 49022 mc/.pio/build/nucleo_f091rc/firmware.elf",
             "projectEnvName": "nucleo_f091rc",
-            "toolchainBinDir": "C:/Users/ericz/.platformio/packages/toolchain-gccarmnoneeabi/bin",
+            "toolchainBinDir": "C:/Users/thena/.platformio/packages/toolchain-gccarmnoneeabi/bin",
             "internalConsoleOptions": "openOnSessionStart",
-            "svdPath": "C:/Users/ericz/.platformio/platforms/ststm32/misc/svd/STM32F091x.svd",
+            "svdPath": "C:/Users/thena/.platformio/platforms/ststm32/misc/svd/STM32F091x.svd",
             "preLaunchTask": {
                 "type": "PlatformIO",
                 "task": "Pre-Debug"
@@ -26,21 +26,21 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-            "executable": "c:/Users/ericz/Documents/GitHub/ece-49022-microcontroller/.pio/build/nucleo_f091rc/firmware.elf",
+            "executable": "C:/Users/thena/OneDrive/Documents/PlatformIO/Projects/ece 49022 mc/.pio/build/nucleo_f091rc/firmware.elf",
             "projectEnvName": "nucleo_f091rc",
-            "toolchainBinDir": "C:/Users/ericz/.platformio/packages/toolchain-gccarmnoneeabi/bin",
+            "toolchainBinDir": "C:/Users/thena/.platformio/packages/toolchain-gccarmnoneeabi/bin",
             "internalConsoleOptions": "openOnSessionStart",
-            "svdPath": "C:/Users/ericz/.platformio/platforms/ststm32/misc/svd/STM32F091x.svd"
+            "svdPath": "C:/Users/thena/.platformio/platforms/ststm32/misc/svd/STM32F091x.svd"
         },
         {
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (without uploading)",
-            "executable": "c:/Users/ericz/Documents/GitHub/ece-49022-microcontroller/.pio/build/nucleo_f091rc/firmware.elf",
+            "executable": "C:/Users/thena/OneDrive/Documents/PlatformIO/Projects/ece 49022 mc/.pio/build/nucleo_f091rc/firmware.elf",
             "projectEnvName": "nucleo_f091rc",
-            "toolchainBinDir": "C:/Users/ericz/.platformio/packages/toolchain-gccarmnoneeabi/bin",
+            "toolchainBinDir": "C:/Users/thena/.platformio/packages/toolchain-gccarmnoneeabi/bin",
             "internalConsoleOptions": "openOnSessionStart",
-            "svdPath": "C:/Users/ericz/.platformio/platforms/ststm32/misc/svd/STM32F091x.svd",
+            "svdPath": "C:/Users/thena/.platformio/platforms/ststm32/misc/svd/STM32F091x.svd",
             "loadMode": "manual"
         }
     ]

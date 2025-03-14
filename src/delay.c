@@ -6,9 +6,6 @@ void delay(volatile uint32_t count) {
     }
 }
 
-#include "gpio.h"
-#include "delay.h"
-
 uint8_t debounce_button(uint32_t pin) {
     if ((GPIOB->IDR & pin) == 0) {  // Button pressed (active low)
         delay(10000);  // Wait 10ms for debouncing

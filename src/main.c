@@ -8,16 +8,13 @@
 
 
 int main(void) {
-    // Initialize system clock and GPIO
     internal_clock();
     gpio_init();
     spi_init();
     display_init();
     init_motors();
-    
+    orientation();
     while (1) {
         check_buttons();
-        // set_motor1_direction(MOTOR_CW);
-        // set_motor2_direction(MOTOR_CW);
     }
 }

@@ -1,20 +1,7 @@
 #include "stm32f0xx.h"
 #include "motors.h"
 
-// PWM period for 50Hz (20ms) with 48MHz clock
-#define PWM_PERIOD (48000000/50)
-// Pulse width for 1.1ms center position - stop
-#define STOP_PULSE1 (PWM_PERIOD * 1.1 / 20.0)
-// Pulse width for 1.6ms - clockwise rotation
-#define CW_PULSE1 (PWM_PERIOD * 1.59 / 20.0)
-// Pulse width for 2.24ms - counterclockwise rotation
-#define CCW_PULSE1 (PWM_PERIOD * 2.24 / 20.0)
 
-#define STOP_PULSE2 (PWM_PERIOD * 1.1 / 20.0)
-
-#define CW_PULSE2 (PWM_PERIOD * 1.59 / 20.0)
-
-#define CCW_PULSE2 (PWM_PERIOD * 2.24 / 20.0)
 
 void init_motors(void) {
     // Enable clock for GPIOC and TIM3
